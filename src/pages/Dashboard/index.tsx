@@ -1,15 +1,17 @@
 import React from "react";
-import { Container, Title, Form } from "./styles";
+import { Container, Title, Form, Background } from "./styles";
 
 const Dashboard: React.FC = () => {
     return (
         <Container>
-            <Title>Pesquise endereços por CEP</Title>
+            <Background>
+                <Title>Pesquise endereços por CEP</Title>
 
-            <Form>
-                <input type="text" placeholder="Digite seu CEP" />
-                <button type="submit">Pesquisar</button>
-            </Form>
+                <Form>
+                    <input type="text" placeholder="Digite seu CEP" />
+                    <button type="submit">Buscar</button>    
+                </Form>
+            </Background>
         </Container>
     );
 }
