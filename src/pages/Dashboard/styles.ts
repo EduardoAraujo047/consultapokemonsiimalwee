@@ -23,7 +23,7 @@ export const Title = styled.h2`
     line-height: 55px;
 
     padding-top: 20px;
-    margin-top: 70px;
+    margin-top: 10px;
     margin-left: 40px;
 `;
 
