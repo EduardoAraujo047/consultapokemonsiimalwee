@@ -5,15 +5,22 @@ export const Container =  styled.div`
     width: 80%;
     margin: auto;
     border-radius: 5px 5px 5px 5px;
-    box-shadow: -5px 0 darkgreen;
+    
 `;
 
 export const Background = styled.div`
-    background-image: url("https://i.blogs.es/b4dd5c/maps/1366_2000.png");
-    background-position: 10% 10%;
-    background-repeat: no-repeat;
-    border-radius: 0 5px 6px 0;
-    box-shadow: inset 0px 0px 50px 50px rgba(0,0,0,0.3);
+
+    img {
+        width: 100%;
+        height: 200px;
+        margin-top: -150px;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    h2 {
+        position: relative;
+        z-index: 2;
+    }
 `;
 
 export const Title = styled.h2`
@@ -23,12 +30,12 @@ export const Title = styled.h2`
     line-height: 55px;
 
     padding-top: 20px;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-left: 40px;
 `;
 
 export const Form = styled.form`
-    margin-top: 40px;
+    margin-top: -5px;
     max-width: 800px;
 
     display: flex;
@@ -38,6 +45,7 @@ export const Form = styled.form`
         height: 70px;
         padding: 0 25px;
         border: 2px solid #fff;
+        border-radius: 0 0 0 5px;
         color: #3a3a3a;
         border-right: 0;
 
@@ -58,6 +66,60 @@ export const Form = styled.form`
 
         &:hover {
             background: ${shade(0.2, "#04d361")}
+        }
+    }
+`;
+
+export const Ceps = styled.div`
+    margin-top: 80px;
+    max-width: 800px;
+    
+
+    a {
+        box-shadow: -5px 0 darkgreen;
+
+        display: block;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 3px 5px 5px 3px;
+        padding: 22px;
+        text-decoration: none;
+
+        display: flex;
+        align-items: center;
+
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: translate(5px);
+        }
+
+        & + a {
+            margin-top: 15px;
+        }
+
+        .uf {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #04d361;
+            padding: 22px;
+        }
+
+        div {
+            margin: 0 15px;
+            flex: 1;
+
+            strong {
+                font-size: 20px;
+                color: #2b2b2b;
+            }
+
+            p {
+                font-size: 18px;
+                color: #474747;
+                margin-top: 2px;
+            }
         }
     }
 `;
