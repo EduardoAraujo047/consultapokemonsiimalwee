@@ -1,82 +1,64 @@
-import React, { useState, useEffect, FormEvent } from "react";
-import { Link } from "react-router-dom";
-import api from "../../services/api";
-import { Container, Title, Form, Background, } from "./styles";
+import { Container, Title, Form, Background, Ceps } from "./styles";
+import api from '../../services/api';
+import bgMapa from '../../images/mapa.png';
+import { useState, FormEvent } from "react";
 
-
-interface Cep {
+interface CepProps {
     cep: string;
     logradouro: string;
     bairro: string;
     localidade: string;
     uf: string;
-        
 }
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {   
     const [newCep, setNewCep] = useState('');
-    const [inputError,setInputError] = useState('');
-    const [cep, setCep] = useState <Cep[]> (() => {
-        const storageCep = localStorage.getItem(
-            '@cep'
-        )
-        if(storageCep){
-            return JSON.parse(storageCep);
-        }
+    const [ceps, setCep] = useState<CepProps[]>([]);
 
-        return [];
-    })
-
-
-    const handleAddCep = async (event: FormEvent<HTMLFormElement>) => {
+    const pesquisarCep = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if(!newCep){
-            setInputError("Procure por um CEP!")
-            return;
+        try {
+            const response = await api.get(`${newCep}/json/`);
+            const cepDados = response.data;
+
+            setCep([...ceps, cepDados]);
+
+            console.log(ceps);
+        } catch(err){
+
         }
-
-        try{
-            const response = await api.get(`ws/${newCep}/json`)
-            const ceps = response.data;
-        
-            setCep([...cep, ceps])
-            setNewCep('');
-            setInputError('')
-
-        }catch(err){
-            setInputError("Esse CEP não foi encontrado")
-        }
-    }
-
-    useEffect(() => {
-        localStorage.setItem(
-            '@cep',
-            JSON.stringify(cep)
-        )
-    }, [cep])
-
-
+    };
 
     return (
-        <>
-            <Container>
-                <Background>
-                    <Title>Pesquise endereços por CEP</Title>
+        <Container>
+            <Background>
+                <Title>Pesquise endereços por CEP</Title>
+                <img src={bgMapa} alt="Mapa" />
+                <Form onSubmit={pesquisarCep}>
+                    <input type="number" placeholder="Digite seu CEP" onChange={e => setNewCep(e.target.value)} />
+                    <button type="submit">Buscar</button>    
+                </Form>
+            </Background>
 
-                    <Form>
-                        <input type="text" placeholder="Digite seu CEP" />
-                        <button type="submit">Buscar</button>    
-                    </Form>
-                </Background>
-            </Container>
 
-            {cep.map(cep => (
-                <Link to="#">
-                    <p>{cep.cep}</p>
-                </Link>
-            ))}
-        </>
+
+            <Ceps>
+                {ceps.map(cep => (
+                    <a href="#">
+                        <p className="uf">{cep.uf}</p>
+                        <div>
+                            <strong>{cep.localidade}</strong>
+                            <p>{cep.bairro}</p>
+                            <p>{cep.logradouro}</p>
+                            <p>CEP: {cep.cep}</p>
+                        </div>
+                    </a>
+                ))}
+
+            </Ceps>
+
+        </Container>  
     );
 }
 
