@@ -1,63 +1,93 @@
-import { Container, Title, Form, Background, Ceps } from "./styles";
+import { Container, Form, Background, Pokemons, Descricao, Pokedex } from "./styles";
 import api from '../../services/api';
-import bgMapa from '../../images/mapa.png';
+import bgPoke from '../../images/p.png';
 import { useState, FormEvent } from "react";
 
-interface CepProps {
-    cep: string;
-    logradouro: string;
-    bairro: string;
-    localidade: string;
-    uf: string;
+interface PokeProps {
+    id: string;
+
+    abilities: [
+        {
+            ability: {
+                name: string;
+            }
+        },
+        {
+            ability: {
+                name: string;
+            }
+        }
+    ]
+
+    forms:[ 
+        {
+            name: string;
+        }
+    ]
+
+    sprites: {
+        front_default: string;
+    };
+
+    types:[
+        {
+            type:{
+                name: string;
+            }
+        },
+        {
+            type:{
+                name: string;
+            }
+        }
+    ]
+
 }
 
 const Dashboard: React.FC = () => {   
-    const [newCep, setNewCep] = useState('');
-    const [ceps, setCep] = useState<CepProps[]>([]);
+    const [newPoke, setNewPoke] = useState('');
+    const [pokes, setPoke] = useState<PokeProps[]>([]);
 
-    const pesquisarCep = async (event: FormEvent<HTMLFormElement>) => {
+    const pesquisarPoke = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {
-            const response = await api.get(`${newCep}/json/`);
-            const cepDados = response.data;
+            const response = await api.get(`${newPoke}`);
+            const pokeDados = response.data;
 
-            setCep([...ceps, cepDados]);
+            setPoke([...pokes, pokeDados])
 
-            console.log(ceps);
+            console.log(pokes);
         } catch(err){
 
         }
     };
 
+
     return (
         <Container>
             <Background>
-                <Title>Pesquise endereços por CEP</Title>
-                <img src={bgMapa} alt="Mapa" />
-                <Form onSubmit={pesquisarCep}>
-                    <input type="number" placeholder="Digite seu CEP" onChange={e => setNewCep(e.target.value)} />
+                <img src={bgPoke} />
+                <Form onSubmit={pesquisarPoke}>
+                    <input type="text" placeholder="Busque por um Pokémon" onChange={e => setNewPoke(e.target.value)} />
                     <button type="submit">Buscar</button>    
                 </Form>
             </Background>
 
+                <Pokemons>
+                    {pokes.map(poke => (
+                        <a href="#">
+                            <Pokedex><p>#{poke.id}</p></Pokedex>
+                            <img src={poke.sprites.front_default} />
+                            <Descricao>
+                                <strong>{poke.forms[0].name.toUpperCase()}</strong>
+                                <p>{poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1)}</p>
+                                <p>{poke.abilities[1].ability.name.charAt(0).toUpperCase() + poke.abilities[1].ability.name.slice(1)}</p>
+                            </Descricao>
+                        </a>
+                    ))}
 
-
-            <Ceps>
-                {ceps.map(cep => (
-                    <a href="#">
-                        <p className="uf">{cep.uf}</p>
-                        <div>
-                            <strong>{cep.localidade}</strong>
-                            <p>{cep.bairro}</p>
-                            <p>{cep.logradouro}</p>
-                            <p>CEP: {cep.cep}</p>
-                        </div>
-                    </a>
-                ))}
-
-            </Ceps>
-
+                </Pokemons>        
         </Container>  
     );
 }
