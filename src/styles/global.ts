@@ -9,7 +9,7 @@ export default createGlobalStyle`
     }
 
     body {
-        background: #f0f0f5;
+        background: #DFDFDF;
     }
 
     body, input, button {
@@ -19,7 +19,7 @@ export default createGlobalStyle`
     #root {
         max-width: 960px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 10px 20px;
     }
 
     button {
