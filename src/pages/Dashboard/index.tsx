@@ -1,6 +1,7 @@
 import { Container, Form, Background, Pokemons, Descricao, Pokedex } from "./styles";
 import api from '../../services/api';
 import bgPoke from '../../images/p.png';
+import pokebola from '../../images/pokebola.png';
 import { useState, FormEvent } from "react";
 
 interface PokeProps {
@@ -76,8 +77,11 @@ const Dashboard: React.FC = () => {
 
                 <Pokemons>
                     {pokes.map(poke => (
-                        <a href="#">
-                            <Pokedex><p>#{poke.id}</p></Pokedex>
+                        <a href="#" className={poke.types[0].type.name}>
+                            <Pokedex>
+                                <p>#{poke.id}</p>
+                                <img src={pokebola}/>
+                            </Pokedex>
                             <img src={poke.sprites.front_default} />
                             <Descricao>
                                 <strong>{poke.forms[0].name.toUpperCase()}</strong>
@@ -86,8 +90,9 @@ const Dashboard: React.FC = () => {
                             </Descricao>
                         </a>
                     ))}
-
-                </Pokemons>        
+                </Pokemons>
+                <hr />
+                <h6>Projeto API Malwee - Dev: Eduardo Ronchi de Araújo ©</h6>
         </Container>  
     );
 }
