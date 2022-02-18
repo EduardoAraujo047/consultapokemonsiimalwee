@@ -4,8 +4,10 @@ import { shade } from 'polished';
 export const Container =  styled.div`
     width: 80%;
     margin: auto;
-    border-radius: 5px 5px 5px 5px;
-    
+
+    h6 {
+        text-align: center;
+    }
 `;
 
 export const Background = styled.div`
@@ -31,13 +33,18 @@ export const Form = styled.form`
         border-radius: 5px 0 0 5px;
         color: #3a3a3a;
         border-right: 0;
+        transition: background-color 0.2s;
+
+        &:focus {
+            background: #ebebeb;
+        }
 
     }
 
     button {
         width: 210px;
         height: 60px;
-        background: #E54222;
+        background: #FFCC00;
         border-radius: 0 5px 5px 0;
         border-top: 2px solid #000;
         border-right: 2px solid #000;
@@ -48,7 +55,7 @@ export const Form = styled.form`
         transition: background-color 0.2s;
 
         &:hover {
-            background: ${shade(0.2, "#bf3619")}
+            background: ${shade(0.2, "#D5A100")}
         }
     }
 `;
@@ -64,14 +71,12 @@ export const Pokemons = styled.div`
     flex-wrap: wrap;
     
     
-    a {
-        box-shadow: -5px 0 #CE2211;
-        
+    a {        
         display: block;
         height: 300px;
         margin-right: 15px;
         margin-bottom: 15px;
-        background-color: #fff;
+        // background-color: #fff;
         border-radius: 5px 5px 5px 5px;
         text-decoration: none;
 
@@ -80,7 +85,7 @@ export const Pokemons = styled.div`
         transition: transform 0.2s;
 
         &:hover {
-            transform: translate(5px);
+            transform: translate(2px);
         }
 
         & + a {
@@ -99,7 +104,7 @@ export const Pokemons = styled.div`
 `;
 
 export const Descricao = styled.div`
-    margin-top: -10px;
+    margin-top: -43px;
     padding: 8px;
 
     strong {
@@ -109,7 +114,7 @@ export const Descricao = styled.div`
 
     p {
         font-size: 18px;
-        color: #474747;
+        color: #383838;
         margin-top: 2px;
     }
 `;
@@ -118,10 +123,18 @@ export const Pokedex = styled.p`
     p {
         width: 25px;
         height: 25px;
+
         font-size: 15px;
         color: #000;
         padding: 5px;
         margin-left: 5px;
         text-decoration: none;
+    }
+
+    img {
+        max-width: 32px;
+        max-height: 32px;
+
+        margin-left: 81%;
     }
 `;
