@@ -2,13 +2,12 @@ import { Container, Form, Background, Pokemons, Descricao, Pokedex, Error } from
 import api from '../../services/api';
 import bgPoke from '../../images/p.png';
 import pokebola from '../../images/pokebola.png';
-import splash from '../../images/splash.png';
 import { useState, FormEvent } from "react";
 
 interface PokeProps {
     id: string;
 
-    abilities: [
+    abilities:[
         {
             ability: {
                 name: string;
@@ -33,24 +32,22 @@ interface PokeProps {
 
     types:[
         {
-            type:{
+            type: {
                 name: string;
             }
         },
         {
-            type:{
+            type: {
                 name: string;
             }
         }
     ]
-
 }
 
 const Dashboard: React.FC = () => {   
     const [newPoke, setNewPoke] = useState('');
     const [inputError, setInputError] = useState('');
     const [pokes, setPoke] = useState<PokeProps[]>([]);
-    
     
     const pesquisarPoke = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -74,7 +71,6 @@ const Dashboard: React.FC = () => {
         }
     };
 
-
     return (
         <Container>
             <Background>
@@ -92,13 +88,13 @@ const Dashboard: React.FC = () => {
                     <a href="#" className={poke.types[0].type.name}>
                         <Pokedex>
                             <p>#{poke.id}</p>
-                            <img src={pokebola}/>
+                            <img id="pokebola" src={pokebola}/>
                         </Pokedex>
                         <img src={poke.sprites.front_default} />
                         <Descricao>
                             <strong>{poke.forms[0].name.toUpperCase()}</strong>
-                            <p>{poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1)}</p>
-                            <p>{poke.abilities[1].ability.name.charAt(0).toUpperCase() + poke.abilities[1].ability.name.slice(1)}</p>
+                            <p className="paragraph">{poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1)}</p>
+                            <p className="paragraph">{poke.abilities[1].ability.name.charAt(0).toUpperCase() + poke.abilities[1].ability.name.slice(1)}</p>
                         </Descricao>
                     </a>
                 ))}

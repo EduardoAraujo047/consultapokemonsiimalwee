@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 export const Container =  styled.div`
     width: 80%;
@@ -15,7 +14,7 @@ export const Background = styled.div`
     img {
         width: 90%;
         height: 215px;
-        margin-left: 30px;
+        margin-left: 10px;
     }
 `;
 
@@ -29,11 +28,12 @@ export const Form = styled.form`
         flex: 1;
         font-family: "JetBrains Mono", monospace;
         font-weight: bold;
-        height: 60px;
+        height: 50px;
         padding: 0 25px;
-        border: 2px solid #000;
-        border-radius: 5px 5px 5px 5px;
+        border: none;
+        border-radius: 50px;
         color: #3a3a3a;
+        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px   ;
         transition: background-color 0.2s;
     }
 
@@ -42,7 +42,7 @@ export const Form = styled.form`
         align-items: center;
         appearance: none;
         background-color: #f6eb49;
-        border-radius: 4px;
+        border-radius: 25px;
         border-width: 0;
         box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#c5be53 0 -3px 0 inset;
         box-sizing: border-box;
@@ -52,7 +52,7 @@ export const Form = styled.form`
         font-family: "JetBrains Mono", monospace;
         font-weight: bold;
         width: 150px;
-        height: 58px;
+        height: 50px;
         justify-content: center;
         line-height: 1;
         list-style: none;
@@ -116,7 +116,7 @@ export const Pokemons = styled.div`
         }
 
         img {
-            margin-top: -20px;
+            margin-top: -30px;
             margin-bottom: 20px;
             image-rendering: pixelated;
             width: 200px;
@@ -127,8 +127,13 @@ export const Pokemons = styled.div`
 `;
 
 export const Descricao = styled.div`
-    margin-top: -43px;
+    margin-top: -50px;
     padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
 
     strong {
         font-size: 20px;
@@ -136,8 +141,9 @@ export const Descricao = styled.div`
     }
 
     p {
+        display: inline;
         font-size: 18px;
-        color: #383838;
+        color: #303030;
         margin-top: 2px;
     }
 `;
@@ -154,11 +160,12 @@ export const Pokedex = styled.p`
         text-decoration: none;
     }
 
-    img {
+    #pokebola {
         max-width: 32px;
         max-height: 32px;
 
         margin-left: 81%;
+        margin-top: -20px;
     }
 `;
 
