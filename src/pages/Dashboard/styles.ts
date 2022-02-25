@@ -1,4 +1,21 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+
+interface imgProps {
+    imgPoke: string;
+}
+
+export const ImagemPoke = styled.div<imgProps>`
+    img {
+        &:hover {
+            ${(props) =>
+                css`
+                background-image: url(${props.imgPoke});
+                visibility: collapse;
+
+                `}
+        }
+    }
+`;
 
 export const Container =  styled.div`
     width: 80%;
@@ -107,13 +124,13 @@ export const Pokemons = styled.div`
         
         transition: transform 0.2s;
     
-        &:hover {
-            transform: translate(2px);
-        }
+        // &:hover {
+        //     transform: translate(2px);
+        // }
 
-        & + a {
-            margin-right: 15px;
-        }
+        // & + a {
+        //     margin-right: 15px;
+        // }
 
         img {
             margin-top: -30px;
@@ -123,28 +140,40 @@ export const Pokemons = styled.div`
             height: 200px;
         }
 
+        h6 {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            border: 3px solid #73AD21;
+        }
     }
 `;
 
 export const Descricao = styled.div`
-    margin-top: -50px;
+    margin-top: -20px;
     padding: 8px;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-
     strong {
         font-size: 20px;
         color: #000;
     }
 
-    p {
-        display: inline;
+    .paragraph {
         font-size: 18px;
         color: #303030;
         margin-top: 2px;
+    }
+
+    #pokemonDiv {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-left: -10px;
     }
 `;
 
