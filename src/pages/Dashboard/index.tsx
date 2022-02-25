@@ -1,8 +1,8 @@
-import { Container, Form, Background, Pokemons, Descricao, Pokedex, Error } from "./styles";
+import React, { useState, FormEvent } from "react";
 import api from '../../services/api';
 import bgPoke from '../../images/p.png';
 import pokebola from '../../images/pokebola.png';
-import { useState, FormEvent } from "react";
+import { Container, Form, Background, Pokemons, Descricao, Pokedex, Error, ImagemPoke } from "./styles";
 
 interface PokeProps {
     id: string;
@@ -28,6 +28,7 @@ interface PokeProps {
 
     sprites: {
         front_default: string;
+        back_default: string;
     };
 
     types:[
@@ -71,6 +72,10 @@ const Dashboard: React.FC = () => {
         }
     };
 
+    const giraImg = (imagem: HTMLImageElement, imgPoke: string) => {
+        return imagem.src = imgPoke;
+    }
+
     return (
         <Container>
             <Background>
@@ -90,11 +95,18 @@ const Dashboard: React.FC = () => {
                             <p>#{poke.id}</p>
                             <img id="pokebola" src={pokebola}/>
                         </Pokedex>
-                        <img src={poke.sprites.front_default} />
+                        <ImagemPoke imgPoke={poke.sprites.back_default}>
+                            <img src={poke.sprites.front_default}/>
+                        </ImagemPoke>
+                        
                         <Descricao>
                             <strong>{poke.forms[0].name.toUpperCase()}</strong>
-                            <p className="paragraph">{poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1)}</p>
-                            <p className="paragraph">{poke.abilities[1].ability.name.charAt(0).toUpperCase() + poke.abilities[1].ability.name.slice(1)}</p>
+
+                            <div id="pokemonDiv">
+                                <p className="paragraph">{poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1)}</p>
+                                <p className="paragraph">{poke.abilities[1].ability.name.charAt(0).toUpperCase() + poke.abilities[1].ability.name.slice(1)}</p>
+                            </div>
+                            
                         </Descricao>
                     </a>
                 ))}
