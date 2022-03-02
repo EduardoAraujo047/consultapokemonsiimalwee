@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from "react";
 import api from '../../services/api';
 import bgPoke from '../../images/p.png';
 import pokebola from '../../images/pokebola.png';
-import { Container, Form, Background, Pokemons, Descricao, Pokedex, Error, ImagemPoke } from "./styles";
+import { Container, Form, Background, Pokemons, Descricao, Pokedex, Error } from "./styles";
 
 interface PokeProps {
     id: string;
@@ -72,10 +72,6 @@ const Dashboard: React.FC = () => {
         }
     };
 
-    const giraImg = (imagem: HTMLImageElement, imgPoke: string) => {
-        return imagem.src = imgPoke;
-    }
-
     return (
         <Container>
             <Background>
@@ -95,12 +91,11 @@ const Dashboard: React.FC = () => {
                             <p>#{poke.id}</p>
                             <img id="pokebola" src={pokebola}/>
                         </Pokedex>
-                        <ImagemPoke imgPoke={poke.sprites.back_default}>
-                            <img src={poke.sprites.front_default}/>
-                        </ImagemPoke>
                         
+                        <img src={poke.sprites.front_default}/>
+                            
                         <Descricao>
-                            <strong>{poke.forms[0].name.toUpperCase()}</strong>
+                            <strong>{poke.forms[0].name.charAt(0).toUpperCase() + poke.forms[0].name.slice(1)}</strong>
 
                             <div id="pokemonDiv">
                                 <p className="paragraph">{poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1)}</p>

@@ -1,21 +1,5 @@
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 
-interface imgProps {
-    imgPoke: string;
-}
-
-export const ImagemPoke = styled.div<imgProps>`
-    img {
-        &:hover {
-            ${(props) =>
-                css`
-                background-image: url(${props.imgPoke});
-                visibility: collapse;
-
-                `}
-        }
-    }
-`;
 
 export const Container =  styled.div`
     width: 80%;
@@ -124,13 +108,13 @@ export const Pokemons = styled.div`
         
         transition: transform 0.2s;
     
-        // &:hover {
-        //     transform: translate(2px);
-        // }
+        &:hover {
+            transform: translate(2px);
+        }
 
-        // & + a {
-        //     margin-right: 15px;
-        // }
+        & + a {
+            margin-right: 15px;
+        }
 
         img {
             margin-top: -30px;
@@ -183,6 +167,7 @@ export const Pokedex = styled.p`
         height: 25px;
 
         font-size: 15px;
+        font-weight: bold;
         color: #000;
         padding: 5px;
         margin-left: 5px;
